@@ -1,0 +1,76 @@
+
+{% extends "base.html" %} 
+{% block title %}USV Mission Planner{% endblock %}
+
+{% block head_extra %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDl7j1gjfJ-OentAm-aqDHu81p-Kv3WHos"></script>
+{% endblock %}
+
+{% block main_content %}
+    <div class="main-layout"> 
+        <div class="map-column">
+            <div id="map"></div> 
+            
+            <div class="absolute top-4 left-4 bg-white rounded-lg shadow p-3 space-x-2 z-10">
+                <button onclick="clearWaypoints()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded transition">Clear</button>
+                <button onclick="uploadMission()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded transition">Upload</button>
+                <button onclick="startMission()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded transition">Start</button>
+            </div>
+            <div id="compass">
+                <div class="dial">
+                    <div id="compass-needle"></div>
+                    <span class="N">N</span><span class="E">E</span>
+                    <span class="S">S</span><span class="W">W</span>
+                </div>
+            </div>
+            <div class="absolute bottom-4 left-4 w-1/3 z-10">
+                <div id="progress-container" class="bg-gray-200 rounded">
+                    <div id="progress-bar" class="h-3 bg-blue-500 rounded" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        <!-- NÚT CHUYỂN ĐỔI MAP TYPE - Ở DƯỚI MAP -->
+        <div class="absolute bottom-40 right-100 bg-white rounded-lg shadow z-10 flex overflow-hidden">
+        <button onclick="setMapType('roadmap')" id="btn-roadmap" class="map-type-btn active px-3 py-2 text-sm font-medium transition flex items-center" title="Bản đồ thường">
+        <i class="fa-solid fa-map mr-1"></i> Roadmap
+        </button>
+        <button onclick="setMapType('satellite')" id="btn-satellite" class="map-type-btn px-3 py-2 text-sm font-medium transition flex items-center" title="Ảnh vệ tinh">
+        <i class="fa-solid fa-satellite mr-1"></i> Satellite
+        </button>
+        <button onclick="setMapType('hybrid')" id="btn-hybrid" class="map-type-btn px-3 py-2 text-sm font-medium transition flex items-center" title="Vệ tinh + Nhãn">
+        <i class="fa-solid fa-layer-group mr-1"></i> Hybrid
+        </button>
+        <button onclick="setMapType('terrain')" id="btn-terrain" class="map-type-btn px-3 py-2 text-sm font-medium transition flex items-center" title="Địa hình">
+        <i class="fa-solid fa-mountain mr-1"></i> Terrain
+        </button>
+        </div>
+
+        <div id="dashboard">
+            <h3>📊 Real-time Status</h3>
+            <div class="data-card bg-blue-500 text-white">
+                <div class="icon"><i class="fa-solid fa-location-arrow"></i></div>
+                <div class="value" id="mission-status">STANDBY</div>
+                <div class="label">Mission State</div>
+            </div>
+            <div class="data-card">
+                <div class="icon text-green-500"><i class="fa-solid fa-battery-full"></i></div>
+                <div class="value" id="battery-level">-- %</div>
+                <div class="label">Battery Level</div>
+            </div>
+            <div class="data-card">
+                <div class="icon text-blue-500"><i class="fa-solid fa-gauge-simple-high"></i></div>
+                <div class="value" id="speed">-- m/s</div>
+                <div class="label">Current Speed</div>
+            </div>
+            <div class="data-card">
+                <div class="icon text-indigo-500"><i class="fa-solid fa-route"></i></div>
+                <div class="value" id="waypoint-index">-- / --</div>
+                <div class="label">Waypoint Progress</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body_extra_script %}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
