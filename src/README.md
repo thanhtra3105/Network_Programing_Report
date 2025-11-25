@@ -90,7 +90,7 @@ Server will run on port: **5000**
 
 ---
 
-## 📊 Logging System
+## Logging System
 
 The server automatically logs data to the following directories:
 
