@@ -1,99 +1,113 @@
-Project này là **server điều khiển và giám sát UAV/Drone** bằng MAVLink, viết bằng Python + Flask.  
-Được phát triển bởi ...
+# UAV/Drone Control and Monitoring Server
 
-## Cấu trúc thư mục
+This project is a **UAV/Drone control and monitoring server** using MAVLink protocol, built with Python + Flask.
+
+---
+
+## Directory Structure
 ```
 source/
-├── __pycache__/
-├── logs/
-│   ├── command_rtt/
+├── __pycache__/                      # Python bytecode cache
+├── logs/                             # System logs
+│   ├── command_rtt/                  # Command Round Trip Time
 │   │   └── command_rtt.csv
-│   ├── latency_and_loss/
+│   ├── latency_and_loss/             # Network latency and packet loss
 │   │   ├── mission-progress_latency.csv
 │   │   ├── vehicle-info_latency.csv
 │   │   └── vehicle-position_latency.csv
-│   └── px4_data/
+│   └── px4_data/                     # PX4 flight controller data
 │       └── px4_data_log.csv
-├── static/
-│   ├── boat.png
-│   ├── script.js
-│   └── style.css
-├── templates/
-│   ├── base.html
-│   ├── dashboard.html
-│   ├── index.html
-│   └── stream.html
-├── requirements.txt
-├── server.py
-└── README.md
+├── static/                           # Static assets
+│   ├── boat.png                      # Vehicle icon
+│   ├── script.js                     # Client-side JavaScript
+│   └── style.css                     # Stylesheet
+├── templates/                        # HTML templates
+│   ├── base.html                     # Base template
+│   ├── dashboard.html                # Dashboard interface
+│   ├── index.html                    # Home page
+│   └── stream.html                   # Data stream display
+├── requirements.txt                  # Python dependencies
+├── server.py                         # Main server file
+└── README.md                         # Documentation
 ```
 
-## Yêu cầu
-- Hệ điều hành Ubuntu
-- PX4
-- Python 3.12+  
-- Virtual environment
-- Các thư viện Python:
+---
+
+## Requirements
+
+- **Operating System**: Ubuntu
+- **Flight Controller**: PX4
+- **Python**: 3.12+
+- **Virtual Environment**: Recommended
+- **Python Libraries**:
   - flask
   - flask-cors
   - pymavlink
 
 ---
 
-## Cài đặt và chạy server
+## Installation and Setup
 
-### 1. Clone repo về
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/thanhtra3105/Network_Programing_Report.git
 cd Network_Programing_Report
 ```
-### 2. Tạo virtual environment
+
+### 2. Create Virtual Environment
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Cài thư viện
+### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
-### 4. Chạy server
+
+### 4. Run the Server
 ```bash
 python source/server.py
 ```
 
-Server sẽ chạy tại port: 5000
+Server will run on port: **5000**
+
+---
 
 ## API Endpoints
 
-| Endpoint | Phương thức | Mô tả |
-|----------|-------------|-------|
-| `/` | GET | Trang chủ |
-| `/telemetry` | GET | Dashboard giám sát |
-| `/api/telemetry` | GET | Dữ liệu telemetry (JSON) |
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Home page |
+| `/telemetry` | GET | Monitoring dashboard |
+| `/api/telemetry` | GET | Telemetry data (JSON) |
 | `/upload-mission` | POST | Upload mission planning |
-| `/start-mission` | POST | Bắt đầu mission |
-| `/vehicle-position` | GET | Vị trí GPS của UAV |
-| `/vehicle-info` | GET | Thông tin UAV (tốc độ, pin, hướng) |
-| `/mission-progress` | GET | Trạng thái tiến trình mission |
-| `/get-mission` | GET | Danh sách mission đã upload |
+| `/start-mission` | POST | Start mission execution |
+| `/vehicle-position` | GET | UAV GPS position |
+| `/vehicle-info` | GET | UAV information (speed, battery, heading) |
+| `/mission-progress` | GET | Mission progress status |
+| `/get-mission` | GET | List of uploaded missions |
 
-## 📊 Hệ Thống Logging
+---
 
-Server tự động ghi log vào các thư mục sau:
+## 📊 Logging System
+
+The server automatically logs data to the following directories:
 
 - **Latency & Packet Loss**: `logs/latency_and_loss/`
-  - Theo dõi độ trễ mạng cho các kênh dữ liệu khác nhau
+  - Monitors network latency across different data channels
   
 - **PX4 Data**: `logs/px4_data/px4_data_log.csv`
-  - Ghi nhận dữ liệu từ flight controller
+  - Records telemetry data from the flight controller
   
 - **Command RTT**: `logs/command_rtt/command_rtt.csv`
-  - Đo thời gian phản hồi của các lệnh điều khiển
+  - Measures response time for control commands
 
-*Các thư mục sẽ được tự động tạo nếu chưa tồn tại.*
+*Directories will be automatically created if they don't exist.*
 
-## Tài Liệu Tham Khảo
+---
+
+## References
 
 - [Flask Documentation](https://flask.palletsprojects.com/)
 - [MAVLink Developer Guide](https://mavlink.io/)
@@ -101,4 +115,4 @@ Server tự động ghi log vào các thư mục sau:
 
 ---
 
-**@Copyright thanhtra3105**
+**© Copyright thanhtra3105**
