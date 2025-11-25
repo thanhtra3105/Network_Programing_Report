@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}USV Live Stream{% endblock %}
+{% block head_extra %} {% endblock %}
+
+{% block main_content %}
+<h1> Stream Video </h1>
+<img src="/video_feed" alt="USV Camera Stream">
+
+<style>
+  
+
+  img {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 640px;
+    height: 480px;
+    object-fit: cover;
+  }
+
+</style>
+
+{% endblock %}
+
+{% block body_extra_script %}
+<script>
+  // Khi rời trang, ngắt kết nối video (đỡ chiếm tài nguyên)
+  window.addEventListener("beforeunload", () => {
+    const img = document.querySelector("img");
+    img.src = "";
+  });
+</script>
+{% endblock %}
