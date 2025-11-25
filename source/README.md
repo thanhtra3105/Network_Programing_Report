@@ -62,7 +62,7 @@ pip install -r requirements.txt
 python source/server.py
 ```
 
-Server sẽ chạy tại: **http://0.0.0.0:5000**
+Server sẽ chạy tại port: 5000
 
 ## API Endpoints
 
