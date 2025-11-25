@@ -10,13 +10,13 @@ Developed by Lê Thanh Trà - 106220273, Trần Đại Tín - 106220272 và Nguy
 ```
 Network_Programing_Report/
 ├── src/          # Source code
-└── docs/         # Project reports and documentation
+└── docs/         # Project report
 ```
 
 ### Directories
 
 - **`src/`**: Contains all source code for the server application. See [src/README.md](src/README.md) for detailed documentation.
-- **`docs/`**: Contains project reports, documentation, and related materials.
+- **`docs/`**: Contains project reports.
 
 ---
 
